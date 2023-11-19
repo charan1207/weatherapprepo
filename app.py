@@ -1,5 +1,6 @@
 from flask import Flask,request,render_template
 import requests
+
 app=Flask(__name__)
 @app.route('/weather')
 def front_end():
@@ -13,8 +14,13 @@ def get_weatherdata():
         'units':request.form.get("units")
     }
     response=requests.get(url,params=params)
+    city=data['name']
     data=response.json()
-    return f"data:{data}"
+  
+
+    return f"data:{data}, city:{city}"
 
 if __name__=='__main__':
     app.run(host='0.0.0.0',port=5003)
+
+#  git remote add origin https://github.com/charan1207/weatherapprepo.git
